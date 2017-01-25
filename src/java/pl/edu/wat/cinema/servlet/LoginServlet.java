@@ -20,8 +20,7 @@ import pl.edu.wat.cinema.util.HibernateUtil;
  * @author Kamil
  */
 public class LoginServlet extends HttpServlet {
-    
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
