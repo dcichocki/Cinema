@@ -42,7 +42,7 @@ public class RegisterServlet extends HttpServlet {
           session.beginTransaction();
             session.save(user);
             session.getTransaction().commit();
-        
+        response.sendRedirect("login.html");
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");

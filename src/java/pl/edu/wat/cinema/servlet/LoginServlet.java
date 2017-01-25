@@ -33,11 +33,12 @@ public class LoginServlet extends HttpServlet {
             session.getTransaction().commit();
         session.close();
 
-        if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
-            request.getSession().setAttribute("use", user);
-            //response.sendRedirect("");
+        if (user.getLogin()!=null && user.getPassword()!=null && user.getLogin().equals(login) && user.getPassword().equals(password)) {
+            request.getSession().setAttribute("user",user);
+            response.sendRedirect("index.xhtml");
             System.out.println("Login successful");
         } else {
+            response.sendRedirect("login.html");
             System.out.println("Login failure");
         }
 

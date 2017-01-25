@@ -31,7 +31,9 @@
                     </h:column>
                 </h:dataTable>
                 <br/> 
-                <a href="login.html">Zaloguj</a>
+               <h:panelGroup rendered="#{not empty user}">
+                    <input type="submit" value="Wyloguj" />
+                </h:panelGroup>
             </h:form>
     </h:body>
 </html>
