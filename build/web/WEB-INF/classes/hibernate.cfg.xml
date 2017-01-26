@@ -52,7 +52,6 @@ Contributor(s):
     <mapping resource="pl/edu/wat/cinema/user/User.hbm.xml"/>
     <mapping resource="pl/edu/wat/cinema/film/Film.hbm.xml"/>
     <mapping resource="pl/edu/wat/cinema/seance/Seance.hbm.xml"/>
-    
-    
+        
   </session-factory>
 </hibernate-configuration>
