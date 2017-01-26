@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>System obsługi kina</title>
+        <link href="bootstrap.css" rel="stylesheet" />
+        <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="style.css" type="text/css" />
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+        
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="container-fluid">
+
+                <h3 class="text-muted" align="center">System obsługi kina</h3>
+                <nav class="navbar navbar-default">
+
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="/Cinema-master/">Strona głowna</a></li>
+
+                        <li><a href="register.html">Rejestracja</a></li>
+
+                        <li><a href="/Cinema-master/">Repertuar</a></li>
+
+                        <li><a href="#">Kontakt</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in" /> Zaloguj się</a></li>     
+                    </ul>
+                </nav>
+            </div>
+            <!-- Jumbotron -->
+
+            <div class="jumbotron">
+
+                <h3>System obsługi kina</h3>
+
+                <p class="lead"> Aby się zalogować podaj swój login i hasło:
+                </p><center>
+                    <form class="form-signin" action="LoginServlet" method="POST">                                     
+
+                        <h3 class="form-signin-heading">Zaloguj się</h3>
+                        LOGIN:<input name="login" class="form-control" value="" type="text" /><br />
+                        PASSWORD:<input name="password" class="form-control" value="" type="password" /><br />
+
+                        <p><input class="btn btn-lg btn-success" value="Zaloguj się" type="submit" /><br /></p>
+<!--                         <div>#{errorMessage}</div>-->
+                    </form>                   
+                </center>
+            </div>
+            <footer class="container-fluid text-center">
+
+                <p>© 2017 System obsługi kina, Inc.</p>
+            </footer>
+        </div>
+    </body>
+</html>

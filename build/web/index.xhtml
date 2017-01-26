@@ -4,37 +4,91 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>System obsługi kina</title>
+        <link href="bootstrap.css" rel="stylesheet"/>
+        <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" /> 
+
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
-       <h:form>
-                        
-                <h:dataTable value="#{filmController.filmTitles}" var="item" border="0" cellpadding="2" cellspacing="0" style="border:solid 1px; color: black;">
-                    <h:column>
-                        <f:facet name="header">
-                            Title
-                        </f:facet>
-                        #{item.title}
-                    </h:column>
-                    <h:column>
-                        
-                        <f:facet name="header">
-                            Description
-                        </f:facet>
-                        #{item.description}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                           
-                        </f:facet>
-                        
-                    </h:column>
-                </h:dataTable>
-                <br/> 
-               <h:panelGroup rendered="#{not empty user}">
-                    <input type="submit" value="Wyloguj" />
-                </h:panelGroup>
-            </h:form>
+
+        <div class="container">
+
+            <div class="container-fluid">
+                <h3 class="text-muted" align="center">System obsługi kina</h3>
+                <nav class="navbar navbar-default">
+                    <ul class="nav navbar-nav">
+                        <li> <a href="/Cinema-master/">Strona głowna</a></li>
+                        <li><a href="register.xhtml">Rejestracja</a></li>
+                        <li class="active"><a href="#">Repertuar</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right"> 
+                        <li>
+                            <h:panelGroup rendered="#{not empty user}">
+                                <span class="glyphicon glyphicon-user"></span> Zalogowany użytkownik : #{user.login}
+                                <form class="form-signin" action="LogoutServlet" method="POST">
+                                        <input class="glyphicon glyphicon-log-out" value="Wyloguj się" type="submit" />
+                                </form>
+                            </h:panelGroup>
+                        </li>
+                        <li>
+                            <h:panelGroup rendered="#{empty user}"><a href="login.xhtml"><span class="glyphicon glyphicon-log-in" ></span>Zaloguj się</a>                 
+                            </h:panelGroup>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="jumbotron">
+
+                <p class="lead" align="center"> Dostępne filmy</p><br></br>
+
+
+                <center>
+                    <h:form>
+                        <h:dataTable value="#{filmController.filmTitles}" var="item" border="0" cellpadding="3" cellspacing="0" class="table table-hover" style="border:solid 1px; color: black;">
+                            <h:column>
+                                <f:facet name="header">
+                                    Title
+                                </f:facet>
+                                #{item.title}
+                            </h:column>
+                            <h:column>
+
+                                <f:facet name="header">
+                                    Description
+                                </f:facet>
+                                #{item.description}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    Ticket
+                                </f:facet>
+                                <a href="#" class="navbar-nav navbar-left">Kup bilet</a>
+
+                            </h:column>
+                        </h:dataTable>
+                        <br/> 
+                    </h:form>
+
+                </center>
+
+
+            </div>
+
+
+
+            <footer class="container-fluid text-center">
+                <p>&copy; 2017 System obsługi kina, Inc.</p>
+            </footer>
+
+        </div> 
     </h:body>
 </html>
 

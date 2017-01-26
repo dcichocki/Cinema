@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package pl.edu.wat.cinema.servlet;
+
 import org.hibernate.Session;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,8 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-
 
 import pl.edu.wat.cinema.user.User;
 import pl.edu.wat.cinema.util.HibernateUtil;
@@ -25,7 +24,9 @@ import pl.edu.wat.cinema.util.HibernateUtil;
 @WebServlet(name = "RegisterServlet", urlPatterns = {"/RegisterServlet"})
 
 public class RegisterServlet extends HttpServlet {
+
     Session session;
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,12 +38,12 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         User user = new User(first_name, last_name, login, password, email, phone);
-        
-            session = HibernateUtil.getSessionFactory().openSession(); 
-          session.beginTransaction();
-            session.save(user);
-            session.getTransaction().commit();
-        response.sendRedirect("login.html");
+
+        session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
+        response.sendRedirect("login1.xhtml");
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");

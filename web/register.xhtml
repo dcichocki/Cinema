@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Rejestracja</title>
+
+        <meta charset="UTF-8" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="bootstrap.css" />
+        <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="style.css" type="text/css" />
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+
+            <div class="container-fluid">
+
+                <h3 class="text-muted" align="center">System obsługi kina</h3>
+                <nav class="navbar navbar-default">
+
+                    <ul class="nav navbar-nav">
+
+                        <li><a href="/Cinema-master/">Strona głowna</a></li>
+
+                        <li class="active"><a href="#">Rejestracja</a></li>
+
+                        <li><a href="/Cinema-master/">Repertuar</a></li>
+
+                        <li><a href="#">Kontakt</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li class="active"><a href="login.html"><span class="glyphicon glyphicon-log-in" /> Zaloguj się</a></li>     
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="jumbotron">
+                <form class="form-signin" action="RegisterServlet" method="POST">             
+
+                    <h3 class="form-signin-heading">Rejestracja</h3>
+                    Imie:<input class="form-control" name="first_name" value="" type="text" /><br />
+                    Nazwisko:<input class="form-control" name="last_name" value="" type="text" /><br />
+                    Login:<input class="form-control" name="login" value="" type="text" /><br />
+                    Hasło:<input class="form-control" name="password" value="" required="" type="password" /><br />
+                    e-mail:<input class="form-control" name="email" value="" required="" autofocus="" type="text" /><br />
+                    Telefon:<input class="form-control" name="phone" value="" type="text" /><br />
+                    <input value="Zarejestruj" type="submit" />
+                </form>     
+            </div>
+            <footer class="container-fluid text-center">
+
+                <p>© 2017 System obsługi kina, Inc.</p>
+            </footer>
+        </div>
+    </body>
+</html>
