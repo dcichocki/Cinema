@@ -49,9 +49,9 @@ Contributor(s):
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.current_session_context_class">thread</property>
         <property name="hibernate.show_sql">true</property>
-        <mapping resource="pl/edu/wat/cinema/user/User.hbm.xml"/>
-        <mapping resource="pl/edu/wat/cinema/film/Film.hbm.xml"/>
-        <mapping resource="pl/edu/wat/cinema/seance/Seance.hbm.xml"/>
+        <mapping resource="pl/edu/wat/cinema/user/User.hbm.xml"></mapping>
+        <mapping resource="pl/edu/wat/cinema/film/Film.hbm.xml"></mapping>
+        <mapping resource="pl/edu/wat/cinema/seance/Seance.hbm.xml"></mapping>
         
     </session-factory>
 </hibernate-configuration>
