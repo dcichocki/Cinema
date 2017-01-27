@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.Query;
 
 import pl.edu.wat.cinema.user.User;
 import pl.edu.wat.cinema.util.HibernateUtil;
@@ -42,8 +43,12 @@ public class RegisterServlet extends HttpServlet {
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(user);
+        Query q = session.createSQLQuery("create table " + user.getLogin()
+                + " (login_id int(10) NOT NULL , "
+                + "title varchar(45) NOT NULL ,PRIMARY KEY  (login_id))");
+        q.executeUpdate();
         session.getTransaction().commit();
-        response.sendRedirect("login1.xhtml");
+        response.sendRedirect("login.xhtml");
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");
