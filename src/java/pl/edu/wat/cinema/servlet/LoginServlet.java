@@ -21,7 +21,7 @@ import pl.edu.wat.cinema.util.HibernateUtil;
  * @author Kamil
  */
 public class LoginServlet extends HttpServlet {
-
+    public static String loginUser;
     //String error="User or password incorrect";
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
 
         PrintWriter out = response.getWriter();
         String login = request.getParameter("login");
+        loginUser= login;
         String password = request.getParameter("password");
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

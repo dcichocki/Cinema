@@ -44,8 +44,8 @@ public class RegisterServlet extends HttpServlet {
         session.beginTransaction();
         session.save(user);
         Query q = session.createSQLQuery("create table " + user.getLogin()
-                + " (login_id int(10) NOT NULL , "
-                + "title varchar(45) NOT NULL ,PRIMARY KEY  (login_id))");
+                + " (login_id int(10) NOT NULL auto_increment, "
+                + "ticket_id varchar(45) NOT NULL ,PRIMARY KEY  (login_id))");
         q.executeUpdate();
         session.getTransaction().commit();
         response.sendRedirect("login.xhtml");

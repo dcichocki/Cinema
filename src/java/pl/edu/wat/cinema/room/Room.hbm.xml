@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <!--
 DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
@@ -39,19 +38,14 @@ made subject to such option by the copyright holder.
 
 Contributor(s):
 -->
-<hibernate-configuration>
-  <session-factory name="session1">
-    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kino</property>
-    <property name="hibernate.connection.username">kamil</property>
-    <property name="hibernate.connection.password">root</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
-    <property name="hibernate.current_session_context_class">thread</property>
-    <property name="hibernate.show_sql">true</property>
-    <mapping resource="pl/edu/wat/cinema/user/User.hbm.xml"/>
-    <mapping resource="pl/edu/wat/cinema/film/Film.hbm.xml"/>
-    <mapping resource="pl/edu/wat/cinema/seance/Seance.hbm.xml"/>
-    <mapping resource="pl/edu/wat/cinema/ticket/Ticket.hbm.xml"/>
-  </session-factory>
-</hibernate-configuration>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="pl.edu.wat.cinema.film.Room" table="room"/>
+       
+
+
+</hibernate-mapping>

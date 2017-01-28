@@ -7,30 +7,27 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>System obsługi kina</title>
         <link href="bootstrap.css" rel="stylesheet"/>
         <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css" /> 
-
         <link rel="stylesheet" href="style.css" type="text/css"/>
-
-
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    
     <h:body>
-
         <div class="container">
 
             <div class="container-fluid">
                 <h3 class="text-muted" align="center">System obsługi kina</h3>
+                
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                         <li> <a href="/Cinema/">Strona głowna</a></li>
-                        <li><a href="register.xhtml">Rejestracja</a></li>
+                        <li><a href="register.html">Rejestracja</a></li>
                         <li class="active"><a href="films.xhtml">Repertuar</a></li>
                         <li><a href="#">Kontakt</a></li>
                     </ul>
@@ -53,65 +50,39 @@ and open the template in the editor.
 
             <div class="jumbotron">
 
-                <p class="lead" align="center"> Dostępne seanse</p><br></br>
+                <p class="lead" align="center"> #{seanceController.selected.title}</p><br></br>
                 <center>
-
+                        #{ticketBean.readDatabase(seanceController.selected.seance_id)}
                     <h:form>
-
-                        <h:dataTable value="#{seanceController.seanceList}" var="item" border="0" cellpadding="5" cellspacing="0" class="table table-hover" style="border:solid 1px; color: black;">
-                            <h:column>
-                                <f:facet name="header">
-                                    Seance Id
-                                </f:facet>
-                                #{item.seance_id}
-                            </h:column>    
-                            <h:column>
-                                <f:facet name="header">
-                                    Title
-                                </f:facet>
-                                #{item.title}
-                            </h:column>
-                            <h:column>
-
-                                <f:facet name="header">
-                                    Description
-                                </f:facet>
-                                #{item.description}
-                            </h:column>
-                            <h:column>
-
-                                <f:facet name="header">
-                                    Date
-                                </f:facet>
-                                #{item.date}
-                            </h:column>
-                            <h:column>
-
-                                <f:facet name="header">
-                                    Room
-                                </f:facet>
-                                #{item.roomNumber}
-                            </h:column>
-                            <h:column>
-
-                                <f:facet name="header">
-                                    Time
-                                </f:facet>
-                                #{item.hour}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    Ticket
-                                </f:facet>
-                                <h:commandLink action="#{seanceController.prepareView}" value="Kup bilet"/>
-                                
-
-                            </h:column>
-
-
-                        </h:dataTable>
-                        <br/> 
-                        
+                        <h:panelGrid columns="2">
+                            <h:outputText value="Numer Sali"/>
+                            <h:outputText value="#{seanceController.selected.roomNumber}" title="Title"/>
+                            <h:outputText value="Godzina"/>
+                            <h:outputText value="#{seanceController.selected.hour}" title="Title"/>
+                        </h:panelGrid>
+                        <table>
+                            <c:forEach begin="1" end="5" varStatus="i">
+                                <tr>
+                                    <c:forEach begin="1" end="10" varStatus="j">
+                                        <c:choose>
+                                            <c:when test="${ticketBean.isSeatReserved(i.index, j.index, seanceController.selected.seance_id)}">
+                                                <td>
+                                                    
+                                                    Zajete
+                                                    
+                                                </td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td>
+                                                    <h:commandButton action="${ticketBean.reserveSeat(i.index, j.index, seanceController.selected.seance_id, 1, 1)}" />
+                                                    
+                                                </td>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </tr>
+                            </c:forEach>
+                        </table>
                     </h:form>
                 </center>
 
@@ -125,5 +96,11 @@ and open the template in the editor.
             </footer>
 
         </div> 
+
+
+
+
+
+
     </h:body>
 </html>
