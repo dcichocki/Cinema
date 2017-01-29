@@ -44,8 +44,9 @@ Contributor(s):
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/kino</property>
-    <property name="hibernate.connection.username">kamil</property>
+    <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.hbm2ddl.auto">validate</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.show_sql">true</property>
@@ -53,5 +54,6 @@ Contributor(s):
     <mapping resource="pl/edu/wat/cinema/film/Film.hbm.xml"/>
     <mapping resource="pl/edu/wat/cinema/seance/Seance.hbm.xml"/>
     <mapping resource="pl/edu/wat/cinema/ticket/Ticket.hbm.xml"/>
+    <mapping resource="pl/edu/wat/cinema/user/UserTicket.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

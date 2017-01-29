@@ -26,15 +26,16 @@
                         <li> <a href="index.xhtml">Strona głowna</a></li>
                         <li><a href="register.xhtml">Rejestracja</a></li>
                         <li class="active"><a href="#">Repertuar</a></li>
-                        <li><a href="#">Kontakt</a></li>
+                        
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> 
                         <li>
-                            <h:panelGroup rendered="#{not empty user}">
-                                <span class="glyphicon glyphicon-user"></span> Zalogowany użytkownik : #{user.login}
-                                <form class="form-signin" action="LogoutServlet" method="POST">
-                                        <input class="glyphicon glyphicon-log-out" value="Wyloguj się" type="submit" />
-                                </form>
+                           <h:panelGroup rendered="#{not empty user}">
+                               <li style="margin-top: 15px"> <span class="glyphicon glyphicon-user"></span> Witaj: #{user.login}</li>
+                               <li> <form class="form-signin" action="LogoutServlet" method="POST">                                   
+                                     <a href="login.xhtml"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj się</a>
+                                                                     
+                                   </form></li>
                             </h:panelGroup>
                         </li>
                         <li>
@@ -55,20 +56,20 @@
                         <h:dataTable value="#{filmController.filmTitles}" var="item" border="0" cellpadding="3" cellspacing="0" class="table table-hover" style="border:solid 1px; color: black;">
                             <h:column>
                                 <f:facet name="header">
-                                    Title
+                                    Tytuł
                                 </f:facet>
                                 #{item.title}
                             </h:column>
                             <h:column>
 
                                 <f:facet name="header">
-                                    Description
+                                    Opis
                                 </f:facet>
                                 #{item.description}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    More
+                                    Więcej
                                 </f:facet>
                                 <a href="#" class="navbar-nav navbar-left">Więcej</a>
 

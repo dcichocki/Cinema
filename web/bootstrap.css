@@ -6821,5 +6821,40 @@ body {
   border-top-right-radius: 0;
   }
   
+    
+  .sala{
+      background-color: red;
+      width: 90px;
+      height: 90px;
+      visibility: visible;
+      
+  }
   
+  .sala1{
+      background-color: green;
+      width: 90px;
+      height: 90px;
+  }
+  
+  .salaa{
+      background-color: red;
+      width: 45px;
+      height: 45px;
+      visibility: visible;
+      
+  }
+  
+  .sala11{
+      background-color: green;
+      width: 45px;
+      height: 45px;
+  }
+  
+  .ekran{
+      background-color: black;
+      width: 700px;
+      height: 45px;
+      color:white;
+      
+  }
 /*# sourceMappingURL=bootstrap.css.map */

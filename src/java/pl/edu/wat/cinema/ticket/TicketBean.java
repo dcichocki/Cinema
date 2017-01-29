@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.util.Pair;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -32,6 +31,7 @@ public class TicketBean implements Serializable {
 
     Session session;
     HttpSession session2;
+
     public TicketBean() {
 
     }
@@ -48,10 +48,13 @@ public class TicketBean implements Serializable {
         ticket = (List<Ticket>) q.list();
     }
 
-    public boolean isSeatReserved(int x, int y, int seance_id) {
+    public boolean isSeatReserved(int x, int y, int seance_id, int room) {
+        if (ticket.isEmpty()) {
+            readDatabase(seance_id);
+        }
         int k = 0;
         for (int i = 0; i < ticket.size(); i++) {
-            if ((ticket.get(i).getSites_x() == x) && (ticket.get(i).getSites_y() == y)) {
+            if ((ticket.get(i).getSites_x() == x) && (ticket.get(i).getSites_y() == y) && (ticket.get(i).getSeance_id()==seance_id) ) {
                 k = 1;
             }
         }
@@ -62,17 +65,16 @@ public class TicketBean implements Serializable {
     public void reserveSeat(int x, int y, int seance_id, int film_id, int room_id) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         Ticket tickete = new Ticket(seance_id, film_id, room_id, x, y);
-        
+
         System.out.println("Rezerwuje: " + x + " " + y);
         session.beginTransaction();
         //User user = (User)session2.getAttribute("user");
-        
+
         session.save(tickete);
-        Query q = session.createSQLQuery("insert into kino." +   loginUser
-                + " (ticket_id) values ("+tickete.getTicket_id()+")");
+        Query q = session.createSQLQuery("insert into kino." + loginUser + " (ticket_id, title, sites_x, sites_y, date, hour, room) values ('" + tickete.getTicket_id() + "', '" + SeanceController.current.getTitle() + "', '" + x + "', '" + y + "', '" + SeanceController.current.getDate() + "', '" + SeanceController.current.getHour() + "', '" + room_id + "')");
         q.executeUpdate();
         session.getTransaction().commit();
-        
+        ticket.clear();
 
     }
 

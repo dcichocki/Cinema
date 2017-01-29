@@ -23,21 +23,22 @@ and open the template in the editor.
 
             <div class="container-fluid">
                 <h3 class="text-muted" align="center">System obsługi kina</h3>
-                
+
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
                         <li> <a href="/Cinema/">Strona głowna</a></li>
                         <li><a href="register.html">Rejestracja</a></li>
                         <li class="active"><a href="films.xhtml">Repertuar</a></li>
-                        <li><a href="#">Kontakt</a></li>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> 
                         <li>
                             <h:panelGroup rendered="#{not empty user}">
-                                <span class="glyphicon glyphicon-user"></span> Zalogowany użytkownik : #{user.login}
-                                <form class="form-signin" action="LogoutServlet" method="POST">
-                                        <input class="glyphicon glyphicon-log-out" value="Wyloguj się" type="submit" />
-                                </form>
+                                <li style="margin-top: 15px"> <span class="glyphicon glyphicon-user"></span> Witaj: #{user.login}</li>
+                                <li> <form class="form-signin" action="LogoutServlet" method="POST">                                   
+                                        <a href="login.xhtml"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj się</a>
+
+                                    </form></li>
                             </h:panelGroup>
                         </li>
                         <li>
@@ -52,30 +53,33 @@ and open the template in the editor.
 
                 <p class="lead" align="center"> #{seanceController.selected.title}</p><br></br>
                 <center>
-                        #{ticketBean.readDatabase(seanceController.selected.seance_id)}
                     <h:form>
                         <h:panelGrid columns="2">
-                            <h:outputText value="Numer Sali"/>
-                            <h:outputText value="#{seanceController.selected.roomNumber}" title="Title"/>
-                            <h:outputText value="Godzina"/>
-                            <h:outputText value="#{seanceController.selected.hour}" title="Title"/>
+                            <h:outputText value="Numer Sali: "  class="lead" style="margin-left: 30px;" />
+                            <h:outputText value="#{seanceController.selected.roomNumber}"  title=" Title" class="lead"/>
+                            <h:outputText value="Godzina: " class="lead" style="margin-left: 30px;" />
+                            <h:outputText value="#{seanceController.selected.hour}" title="Title" class="lead"  />
                         </h:panelGrid>
+                        <p></p>
                         <table>
+                            <h:commandButton id="disabled2" disabled="true" class="ekran" value="Ekran" />
+                            <p style="margin-bottom: 200px"></p>
+
                             <c:forEach begin="1" end="5" varStatus="i">
                                 <tr>
+
                                     <c:forEach begin="1" end="10" varStatus="j">
                                         <c:choose>
-                                            <c:when test="${ticketBean.isSeatReserved(i.index, j.index, seanceController.selected.seance_id)}">
+                                            <c:when test="${ticketBean.isSeatReserved(i.index, j.index, seanceController.selected.seance_id, seanceController.selected.roomNumber)}">
                                                 <td>
-                                                    
-                                                    Zajete
-                                                    
+                                                    <h:commandButton id="disabled" disabled="true" class="sala"/>
+
                                                 </td>
                                             </c:when>
                                             <c:otherwise>
                                                 <td>
-                                                    <h:commandButton action="${ticketBean.reserveSeat(i.index, j.index, seanceController.selected.seance_id, 1, 1)}" />
-                                                    
+                                                    <h:commandButton action="${ticketBean.reserveSeat(i.index, j.index, seanceController.selected.seance_id, 1, seanceController.selected.roomNumber)}" class="sala1"   />
+
                                                 </td>
                                             </c:otherwise>
                                         </c:choose>
@@ -85,8 +89,11 @@ and open the template in the editor.
                         </table>
                     </h:form>
                 </center>
-
-
+                <p></p>
+                <center>
+                    <Button class="salaa" disabled="true" /> - Miejsca zajęte
+                    <Button class="sala11" disabled="true"/> - Miejsca wolne
+                </center>
             </div>
 
 
@@ -96,10 +103,6 @@ and open the template in the editor.
             </footer>
 
         </div> 
-
-
-
-
 
 
     </h:body>

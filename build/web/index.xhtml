@@ -20,7 +20,7 @@ and open the template in the editor.
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    
+
     <h:body>
 
         <div class="container">
@@ -29,22 +29,25 @@ and open the template in the editor.
                 <h3 class="text-muted" align="center">System obsługi kina</h3>
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
-                        <li> <a href="/Cinema/">Strona głowna</a></li>
+                        <li class="active"> <a href="/Cinema-master/">Strona głowna</a></li>
                         <li><a href="register.xhtml">Rejestracja</a></li>
-                        <li class="active"><a href="films.xhtml">Repertuar</a></li>
-                        <li><a href="#">Kontakt</a></li>
+                        <li ><a href="films.xhtml">Repertuar</a></li>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> 
                         <li>
                             <h:panelGroup rendered="#{not empty user}">
-                                <span class="glyphicon glyphicon-user"></span> Zalogowany użytkownik : #{user.login}
-                                <form class="form-signin" action="LogoutServlet" method="POST">
-                                        <input class="glyphicon glyphicon-log-out" value="Wyloguj się" type="submit" />
-                                </form>
+                                <li style="margin-top: 15px"> <span class="glyphicon glyphicon-user"></span> Witaj: #{user.login}</li>
+                                <li> <form class="form-signin" action="LogoutServlet" method="POST">                                   
+                                        <a href="login.xhtml"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj się</a>
+
+                                    </form></li>
                             </h:panelGroup>
                         </li>
                         <li>
-                            <h:panelGroup rendered="#{empty user}"><a href="login.xhtml"><span class="glyphicon glyphicon-log-in" ></span> Zaloguj się</a>                 
+                            <h:panelGroup rendered="#{empty user}">
+
+                                <a href="login.xhtml"><span class="glyphicon glyphicon-log-in" ></span> Zaloguj się</a>                 
                             </h:panelGroup>
                         </li>
                     </ul>
@@ -61,57 +64,60 @@ and open the template in the editor.
                         <h:dataTable value="#{seanceController.seanceList}" var="item" border="0" cellpadding="5" cellspacing="0" class="table table-hover" style="border:solid 1px; color: black;">
                             <h:column>
                                 <f:facet name="header">
-                                    Seance Id
+                                    Nr
                                 </f:facet>
                                 #{item.seance_id}
                             </h:column>    
                             <h:column>
                                 <f:facet name="header">
-                                    Title
+                                    Tytuł
                                 </f:facet>
                                 #{item.title}
                             </h:column>
                             <h:column>
 
                                 <f:facet name="header">
-                                    Description
+                                    Opis
                                 </f:facet>
                                 #{item.description}
                             </h:column>
                             <h:column>
 
                                 <f:facet name="header">
-                                    Date
+                                    Data seansu
                                 </f:facet>
                                 #{item.date}
                             </h:column>
                             <h:column>
 
                                 <f:facet name="header">
-                                    Room
+                                    Nr sali
                                 </f:facet>
                                 #{item.roomNumber}
                             </h:column>
                             <h:column>
 
                                 <f:facet name="header">
-                                    Time
+                                    Godzina seansu
                                 </f:facet>
                                 #{item.hour}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
-                                    Ticket
+                                    Bilet
                                 </f:facet>
-                                <h:commandLink action="#{seanceController.prepareView}" value="Kup bilet"/>
-                                
 
+
+                                <h:commandLink rendered="#{not empty user}" action="#{seanceController.prepareView}" value="Kup bilet"/>
+
+                                <h:panelGroup rendered="#{empty user}"><a href="login.xhtml"> Zaloguj się</a>                 
+                                </h:panelGroup>
                             </h:column>
 
 
                         </h:dataTable>
                         <br/> 
-                        
+
                     </h:form>
                 </center>
 
