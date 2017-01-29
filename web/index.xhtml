@@ -20,7 +20,7 @@ and open the template in the editor.
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    
+
     <h:body>
 
         <div class="container">
@@ -39,7 +39,7 @@ and open the template in the editor.
                             <h:panelGroup rendered="#{not empty user}">
                                 <span class="glyphicon glyphicon-user"></span> Zalogowany użytkownik : #{user.login}
                                 <form class="form-signin" action="LogoutServlet" method="POST">
-                                        <input class="glyphicon glyphicon-log-out" value="Wyloguj się" type="submit" />
+                                    <input class="glyphicon glyphicon-log-out" value="Wyloguj się" type="submit" />
                                 </form>
                             </h:panelGroup>
                         </li>
@@ -103,15 +103,18 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     Ticket
                                 </f:facet>
-                                <h:commandLink action="#{seanceController.prepareView}" value="Kup bilet"/>
-                                
 
+
+                                <h:commandLink rendered="#{not empty user}" action="#{seanceController.prepareView}" value="Kup bilet"/>
+
+                                <h:panelGroup rendered="#{empty user}"><a href="login.xhtml"> Zaloguj się</a>                 
+                                </h:panelGroup>
                             </h:column>
 
 
                         </h:dataTable>
                         <br/> 
-                        
+
                     </h:form>
                 </center>
 
