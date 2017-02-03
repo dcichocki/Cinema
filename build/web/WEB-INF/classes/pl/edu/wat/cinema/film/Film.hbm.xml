@@ -55,5 +55,11 @@ Contributor(s):
         <property name="description" type="string">
             <column name="description" length="65535" />
         </property>
+        <set name="seance" table="seance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="film_id" not-null="true"/>
+            </key>
+            <one-to-many class="pl.edu.wat.cinema.seance.Seance" />
+        </set>
     </class>
 </hibernate-mapping>

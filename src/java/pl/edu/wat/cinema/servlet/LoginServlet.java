@@ -22,7 +22,8 @@ import pl.edu.wat.cinema.util.HibernateUtil;
  */
 public class LoginServlet extends HttpServlet {
     public static String loginUser;
-    //String error="User or password incorrect";
+    public static int idUser;
+    public static User userSession;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,21 +36,19 @@ public class LoginServlet extends HttpServlet {
         session.beginTransaction();
         Query query = session.createQuery("from User where login= '" + login + "'");
         User user = (User) query.uniqueResult();
+        userSession=user;
         session.getTransaction().commit();
-        System.out.println("HAHAHAHAAHHAAH  " + query.uniqueResult());
 
         if (!(query.uniqueResult() == null) && user.getLogin().equals(login) && user.getPassword().equals(password) && !(user.getPassword() == null) && !(user.getLogin() == null)) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("");
             System.out.println("Login successful");
         } else {
-            //request.setAttribute("errorMessage",error);
             response.setContentType("text/html");
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Bledny login lub haslo.');");
             out.println("window.location.href='login.xhtml';");
             out.println("</script>");
-            //response.sendRedirect("login.xhtml");
             System.out.println("Login failure");
         }
         session.close();

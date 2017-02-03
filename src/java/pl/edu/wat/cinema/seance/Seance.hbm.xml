@@ -45,12 +45,6 @@ Contributor(s):
             <column name="seance_id"/>
             <generator class="identity"/>
         </id>
-        <property name="title" type="string">
-            <column length="45" name="title" not-null="true"/>
-        </property>
-        <property name="description" type="string">
-            <column length="45" name="description" not-null="true"/>
-        </property>
         <property name="date" type="string">
             <column length="19" name="date" not-null="true"/>
         </property>
@@ -60,6 +54,15 @@ Contributor(s):
         <property name="hour" type="string">
             <column length="45" name="hour" not-null="true"/>
         </property>
+        <many-to-one name="film" class="pl.edu.wat.cinema.film.Film" fetch="select">
+            <column name="film_id" not-null="true"/>
+        </many-to-one>
+        <set name="ticket" table="ticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="seance_id" not-null="true"/>
+            </key>
+            <one-to-many class="pl.edu.wat.cinema.ticket.Ticket" />
+        </set>
     </class>
   
 </hibernate-mapping>

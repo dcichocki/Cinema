@@ -5,7 +5,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
         <title>System obsługi kina</title>
         <link href="bootstrap.css" rel="stylesheet" />
@@ -20,7 +21,7 @@ and open the template in the editor.
 
 
 
-        
+
     </head>
     <body>
         <div class="container">
@@ -32,18 +33,30 @@ and open the template in the editor.
 
                     <ul class="nav navbar-nav">
 
-                        <li><a href="/Cinema-master/">Strona głowna</a></li>
+                        <li><a href="index.xhtml">Strona głowna</a></li>
 
                         <li><a href="register.xhtml">Rejestracja</a></li>
 
                         <li><a href="films.xhtml">Repertuar</a></li>
 
-                        
+
                     </ul>
+                    <ul class="nav navbar-nav navbar-right"> 
+                        <li>
+                            <h:panelGroup rendered="#{not empty user}">
+                                <li ><a href="user.xhtml">Moje konto</a></li>
+                                <li style="margin-top: 15px"> <span class="glyphicon glyphicon-user"></span> Witaj: #{user.login}</li>
+                                <li> <form class="form-signin" action="LogoutServlet" method="POST">                                   
+                                         <input class="glyphicon glyphicon-log-out" type="image" value="Wyloguj się" href="login.xhtml"></input>
+                                    </form></li>
+                            </h:panelGroup>
+                        </li>
+                        <li>
+                            <h:panelGroup rendered="#{empty user}">
 
-                    <ul class="nav navbar-nav navbar-right">
-
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in" /> Zaloguj się</a></li>     
+                                <a href="login.xhtml"><span class="glyphicon glyphicon-log-in" ></span> Zaloguj się</a>                 
+                            </h:panelGroup>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -51,20 +64,31 @@ and open the template in the editor.
 
             <div class="jumbotron">
 
-                
-                <center>
-                    <h3 class="form-signin-heading">Aby się zalogować podaj swój login i hasło:</h3><p></p>
-               
-                    <form class="form-signin" action="LoginServlet" method="POST">                                     
+                <h:panelGroup rendered="#{empty user}">
+                    <center>
+                        <h3 class="form-signin-heading">Aby się zalogować podaj swój login i hasło:</h3><p></p>
 
-                       
-                        LOGIN:<input name="login" class="form-control" value="" type="text" /><br />
-                        PASSWORD:<input name="password" class="form-control" value="" type="password" /><br />
+                        <form class="form-signin" action="LoginServlet" method="POST">                                     
 
-                        <p><input class="btn btn-lg btn-success" value="Zaloguj się" type="submit" /><br /></p>
-<!--                         <div>#{errorMessage}</div>-->
-                    </form>                   
-                </center>
+
+                            LOGIN:<input name="login" class="form-control" value="" type="text" /><br />
+                            PASSWORD:<input name="password" class="form-control" value="" type="password" /><br />
+
+                            <p><input class="btn btn-lg btn-success" value="Zaloguj się" type="submit" /><br /></p>
+    <!--                         <div>#{errorMessage}</div>-->
+                        </form>                   
+                    </center>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{not empty user}">
+                    <center>
+                        <h3 class="form-signin-heading">Jesteś zalogowany jako: #{user.login}</h3><p></p>
+                        <li> <form class="form-signin" action="LogoutServlet" method="POST">                                   
+                                <input class="glyphicon glyphicon-log-out" type="submit" value="Wyloguj się" href="login.xhtml"></input>
+                            </form></li>
+                    </center>
+
+
+                </h:panelGroup>
             </div>
             <footer class="container-fluid text-center">
 

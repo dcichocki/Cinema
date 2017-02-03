@@ -40,28 +40,34 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-mapping>
-  <class name="pl.edu.wat.cinema.user.User" table="user">
-    <id name="user_id" type="java.lang.Long">
-      <column name="user_id"/>
-      <generator class="identity"/>
-    </id>
-    <property name="first_name" type="string">
-      <column length="45" name="first_name" not-null="true"/>
-    </property>
-    <property name="last_name" type="string">
-      <column length="45" name="last_name" not-null="true"/>
-    </property>
-    <property name="login" type="string">
-      <column length="45" name="login" not-null="true"/>
-    </property>
-    <property name="password" type="string">
-      <column length="45" name="password" not-null="true"/>
-    </property>
-    <property name="email" type="string">
-      <column length="45" name="email" not-null="true"/>
-    </property>
-    <property name="phone" type="string">
-      <column length="45" name="phone" not-null="true"/>
-    </property>
-  </class>
+    <class name="pl.edu.wat.cinema.user.User" table="user">
+        <id name="user_id" type="java.lang.Long">
+            <column name="user_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="first_name" type="string">
+            <column length="45" name="first_name" not-null="true"/>
+        </property>
+        <property name="last_name" type="string">
+            <column length="45" name="last_name" not-null="true"/>
+        </property>
+        <property name="login" type="string">
+            <column length="45" name="login" not-null="true"/>
+        </property>
+        <property name="password" type="string">
+            <column length="45" name="password" not-null="true"/>
+        </property>
+        <property name="email" type="string">
+            <column length="45" name="email" not-null="true"/>
+        </property>
+        <property name="phone" type="string">
+            <column length="45" name="phone" not-null="true"/>
+        </property>
+        <set name="ticket" table="ticket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true"/>
+            </key>
+            <one-to-many class="pl.edu.wat.cinema.ticket.Ticket" />
+        </set>
+    </class>
 </hibernate-mapping>

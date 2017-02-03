@@ -5,23 +5,36 @@
  */
 package pl.edu.wat.cinema.film;
 
+import java.io.Serializable;
+import java.util.Set;
+import pl.edu.wat.cinema.seance.Seance;
+
 /**
  *
  * @author Damian
  */
-public class Film {
-    
+public class Film implements Serializable {
+
     private Short film_id;
     private String title;
     private String description;
-    
-   public Film(){
-   }
+    private Set<Seance> seance;
+
+    public Film() {
+    }
 
     public Film(String title, String description) {
-        
+
         this.title = title;
         this.description = description;
+    }
+
+    public Set<Seance> getSeance() {
+        return seance;
+    }
+
+    public void setSeance(Set<Seance> seance) {
+        this.seance = seance;
     }
 
     public Short getFilm_id() {
@@ -47,5 +60,5 @@ public class Film {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
 }

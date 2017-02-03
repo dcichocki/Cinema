@@ -41,24 +41,21 @@ Contributor(s):
 -->
 <hibernate-mapping>
     <class dynamic-insert="false" dynamic-update="false" mutable="true" table="ticket" name="pl.edu.wat.cinema.ticket.Ticket" optimistic-lock="version" polymorphism="implicit" select-before-update="false">
-    <id name="ticket_id" type="int">
-        <column name="ticked_id"/>
-        <generator class="identity"/>
-    </id>
-    <property name="seance_id" type="int">
-        <column length="45" name="seance_id" not-null="true"/>
-    </property>
-    <property name="film_id" type="int">
-        <column length="45" name="film_id" not-null="true"/>
-    </property>
-    <property name="room_id" type="int">
-        <column length="45" name="room_id" not-null="true"/>
-    </property>
-    <property name="sites_x" type="int">
-        <column length="45" name="sites_x" not-null="true"/>
-    </property>
-    <property name="sites_y" type="int">
-        <column length="45" name="sites_y" not-null="true"/>
-    </property>
+        <id name="ticket_id" type="int">
+            <column name="ticked_id"/>
+            <generator class="identity"/>
+        </id>
+        <property name="sites_x" type="int">
+            <column length="45" name="sites_x" not-null="true"/>
+        </property>
+        <property name="sites_y" type="int">
+            <column length="45" name="sites_y" not-null="true"/>
+        </property>
+        <many-to-one name="seance" class="pl.edu.wat.cinema.seance.Seance" fetch="select">
+            <column name="seance_id" not-null="true"/>
+        </many-to-one>
+        <many-to-one name="user" class="pl.edu.wat.cinema.user.User" fetch="select">
+            <column name="user_id" not-null="true"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

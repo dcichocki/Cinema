@@ -14,9 +14,8 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import pl.edu.wat.cinema.seance.SeanceController;
-import static pl.edu.wat.cinema.servlet.LoginServlet.loginUser;
-import pl.edu.wat.cinema.user.User;
+import pl.edu.wat.cinema.seance.Seance;
+import static pl.edu.wat.cinema.servlet.LoginServlet.userSession;
 import pl.edu.wat.cinema.util.HibernateUtil;
 
 /**
@@ -28,52 +27,48 @@ import pl.edu.wat.cinema.util.HibernateUtil;
 public class TicketBean implements Serializable {
 
     private List<Ticket> ticket = new ArrayList<>();
-
+    int readData = 0; //zmienna pomocnicza w przybaku braku piletów
     Session session;
     HttpSession session2;
 
     public TicketBean() {
 
     }
-
-    public String getCinemaName(int seance_id) {
-        return "Multikino";
-    }
-
+    //pobieranie z bazy danych biletów
     public void readDatabase(int seance_id) {
+        readData = 1;
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
-        System.out.println("dsadsad");
-        Query q = session.createQuery("from Ticket as ticket where ticket.seance_id = '" + seance_id + "' ");
+        Query q = session.createQuery("from Ticket as ticket where ticket.seance.seance_id = '" + seance_id + "' ");
         ticket = (List<Ticket>) q.list();
     }
-
-    public boolean isSeatReserved(int x, int y, int seance_id, int room) {
-        if (ticket.isEmpty()) {
-            readDatabase(seance_id);
+    //sprawdzanie czy dane miejsce jest zarezerwowane
+    public boolean isSeatReserved(int x, int y, Seance seance1) {
+        if (ticket.isEmpty() && (readData == 0)) {
+            readDatabase(seance1.getSeance_id());
         }
         int k = 0;
         for (int i = 0; i < ticket.size(); i++) {
-            if ((ticket.get(i).getSites_x() == x) && (ticket.get(i).getSites_y() == y) && (ticket.get(i).getSeance_id()==seance_id) ) {
+            if ((ticket.get(i).getSites_x() == x) && (ticket.get(i).getSites_y() == y)) {
                 k = 1;
             }
         }
         return (k == 1);
 
     }
-
-    public void reserveSeat(int x, int y, int seance_id, int film_id, int room_id) {
+    //rezerwacja miejsca
+    public void reserveSeat(int x, int y, Seance seances) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        Ticket tickete = new Ticket(seance_id, film_id, room_id, x, y);
+        Ticket tickete = new Ticket(x, y, userSession, seances);
 
         System.out.println("Rezerwuje: " + x + " " + y);
         session.beginTransaction();
         //User user = (User)session2.getAttribute("user");
 
         session.save(tickete);
-        Query q = session.createSQLQuery("insert into kino." + loginUser + " (ticket_id, title, sites_x, sites_y, date, hour, room) values ('" + tickete.getTicket_id() + "', '" + SeanceController.current.getTitle() + "', '" + x + "', '" + y + "', '" + SeanceController.current.getDate() + "', '" + SeanceController.current.getHour() + "', '" + room_id + "')");
-        q.executeUpdate();
         session.getTransaction().commit();
+       // session.close();
+        readData = 0;
         ticket.clear();
 
     }

@@ -3,30 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/film/Film.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/web/index.xhtml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/seance/Seance.hbm.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/room/Room.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/util/HibernateUtil.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/seance/Seance.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/hibernate.cfg.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/ticket/Ticket.hbm.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/seance/SeanceController.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/user/User.hbm.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/web/login.html</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/web/films.xhtml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/seance/SeanceHelper.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/film/FilmHelper.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/web/register.html</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/web/ticket.xhtml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/film/Film.hbm.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/room/Room.hbm.xml</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/ticket/TicketBean.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/user/User.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/film/FilmController.java</file>
-            <file>file:/C:/Users/Damian/Documents/NetBeansProjects/Cinema/src/java/pl/edu/wat/cinema/ticket/Ticket.java</file>
+            <file>file:/C:/Users/Kamil/Downloads/Cinema-master/src/java/pl/edu/wat/cinema/user/UserBean.java</file>
+            <file>file:/C:/Users/Kamil/Downloads/Cinema-master/src/java/pl/edu/wat/cinema/servlet/RegisterServlet.java</file>
+            <file>file:/C:/Users/Kamil/Downloads/Cinema-master/src/java/pl/edu/wat/cinema/user/UserTicket.java</file>
         </group>
     </open-files>
 </project-private>

@@ -10,8 +10,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
-import javax.inject.Named;
-import pl.edu.wat.cinema.film.Film;
 
 /**
  *
@@ -22,7 +20,7 @@ import pl.edu.wat.cinema.film.Film;
 public class SeanceController {
 
     int startId = 1;
-    int endId = 10;
+    int endId = 100;
     DataModel seanceList;
     SeanceHelper helper;
     public static Seance current;

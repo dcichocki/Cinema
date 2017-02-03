@@ -5,7 +5,8 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
         <title>Rejestracja</title>
 
@@ -34,29 +35,53 @@ and open the template in the editor.
 
                         <li><a href="films.xhtml">Repertuar</a></li>
 
-                        
+
                     </ul>
 
-                    <ul class="nav navbar-nav navbar-right">
+                     <ul class="nav navbar-nav navbar-right"> 
+                        <li>
+                            <h:panelGroup rendered="#{not empty user}">
+                                <li><a href="user.xhtml">Moje konto</a></li>
+                                <li style="margin-top: 15px"> <span class="glyphicon glyphicon-user"></span> Witaj: #{user.login}</li>
+                                <li> <form class="form-signin" action="LogoutServlet" method="POST">                                   
+                                         <input class="glyphicon glyphicon-log-out" type="image" value="Wyloguj się" href="login.xhtml"></input>
+                                    </form></li>
+                            </h:panelGroup>
+                        </li>
+                        <li>
+                            <h:panelGroup rendered="#{empty user}">
 
-                        <li><a href="login.xhtml"><span class="glyphicon glyphicon-log-in" /> Zaloguj się</a></li>     
+                                <a href="login.xhtml"><span class="glyphicon glyphicon-log-in" ></span> Zaloguj się</a>                 
+                            </h:panelGroup>
+                        </li>
                     </ul>
                 </nav>
             </div>
+            <h:panelGroup rendered="#{empty user}">
+                <div class="jumbotron">
+                    <form class="form-signin" action="RegisterServlet" method="POST">             
 
-            <div class="jumbotron">
-                <form class="form-signin" action="RegisterServlet" method="POST">             
+                        <h3 class="form-signin-heading">Rejestracja</h3>
+                        Imie:<input class="form-control" name="first_name" value="" type="text" /><br />
+                        Nazwisko:<input class="form-control" name="last_name" value="" type="text" /><br />
+                        Login:<input class="form-control" name="login" value="" type="text" /><br />
+                        Hasło:<input class="form-control" name="password" value="" required="" type="password" /><br />
+                        e-mail:<input class="form-control" name="email" value="" required="" autofocus="" type="email" /><br />
+                        Telefon:<input class="form-control" name="phone" value="" type="text" /><br />
+                        <input value="Zarejestruj" type="submit" />
+                    </form>     
+                </div>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{not empty user}">
+                   <div class="jumbotron">
+                    <h3 class="form-signin-heading">Jesteś zalogowany jako: #{user.login}</h3><p></p>
+                    <form class="form-signin" action="LogoutServlet" method="POST">                                   
+                        <input class="glyphicon glyphicon-log-out" type="submit" value="Wyloguj się" href="login.xhtml"></input>
+                        </form>
+                   </div>
 
-                    <h3 class="form-signin-heading">Rejestracja</h3>
-                    Imie:<input class="form-control" name="first_name" value="" type="text" /><br />
-                    Nazwisko:<input class="form-control" name="last_name" value="" type="text" /><br />
-                    Login:<input class="form-control" name="login" value="" type="text" /><br />
-                    Hasło:<input class="form-control" name="password" value="" required="" type="password" /><br />
-                    e-mail:<input class="form-control" name="email" value="" required="" autofocus="" type="email" /><br />
-                    Telefon:<input class="form-control" name="phone" value="" type="text" /><br />
-                    <input value="Zarejestruj" type="submit" />
-                </form>     
-            </div>
+
+            </h:panelGroup>
             <footer class="container-fluid text-center">
 
                 <p>© 2017 System obsługi kina, Inc.</p>

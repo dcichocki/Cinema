@@ -1,5 +1,8 @@
 package pl.edu.wat.cinema.user;
 
+import java.util.Set;
+import pl.edu.wat.cinema.ticket.Ticket;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,18 +21,9 @@ public class User {
     private String password;
     private String email;
     private String phone;
+    private Set<Ticket> ticket;
 
     public User() {
-    }
-
-    public User(Long user_id, String first_name, String last_name, String login, String password, String email, String phone) {
-        this.user_id = user_id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.login = login;
-        this.password = password;
-        this.email = email;
-        this.phone = phone;
     }
 
     public User(String first_name, String last_name, String login, String password, String email, String phone) {
@@ -39,6 +33,14 @@ public class User {
         this.password = password;
         this.email = email;
         this.phone = phone;
+    }
+
+    public Set<Ticket> getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Set<Ticket> ticket) {
+        this.ticket = ticket;
     }
 
     public String getLogin() {

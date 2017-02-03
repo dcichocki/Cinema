@@ -43,10 +43,6 @@ public class RegisterServlet extends HttpServlet {
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(user);
-        Query q = session.createSQLQuery("create table " + user.getLogin()
-                + " (login_id int(10) NOT NULL auto_increment, "
-                + "ticket_id varchar(45) NOT NULL ,title varchar(45) NOT NULL,sites_x varchar(45) NOT NULL,sites_y varchar(45) NOT NULL, date varchar(45) NOT NULL,hour varchar(45) NOT NULL,room int ,PRIMARY KEY  (login_id))");
-        q.executeUpdate();
         session.getTransaction().commit();
         response.sendRedirect("login.xhtml");
         try (PrintWriter out = response.getWriter()) {

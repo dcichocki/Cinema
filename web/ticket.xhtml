@@ -26,18 +26,18 @@ and open the template in the editor.
 
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
-                        <li> <a href="/Cinema/">Strona głowna</a></li>
-                        <li><a href="register.html">Rejestracja</a></li>
-                        <li class="active"><a href="films.xhtml">Repertuar</a></li>
+                        <li> <a href="index.xhtml">Strona głowna</a></li>
+                        <li><a href="register.xhtml">Rejestracja</a></li>
+                        <li><a href="films.xhtml">Repertuar</a></li>
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> 
                         <li>
                             <h:panelGroup rendered="#{not empty user}">
+                                <li ><a href="user.xhtml">Moje konto</a></li>
                                 <li style="margin-top: 15px"> <span class="glyphicon glyphicon-user"></span> Witaj: #{user.login}</li>
                                 <li> <form class="form-signin" action="LogoutServlet" method="POST">                                   
-                                        <a href="login.xhtml"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj się</a>
-
+                                        <input class="glyphicon glyphicon-log-out" type="image" value="Wyloguj się" href="login.xhtml"></input>
                                     </form></li>
                             </h:panelGroup>
                         </li>
@@ -51,7 +51,7 @@ and open the template in the editor.
 
             <div class="jumbotron">
 
-                <p class="lead" align="center"> #{seanceController.selected.title}</p><br></br>
+                <p class="lead" align="center"> #{seanceController.selected.film.title}</p><br></br>
                 <center>
                     <h:form>
                         <h:panelGrid columns="2">
@@ -70,7 +70,7 @@ and open the template in the editor.
 
                                     <c:forEach begin="1" end="10" varStatus="j">
                                         <c:choose>
-                                            <c:when test="${ticketBean.isSeatReserved(i.index, j.index, seanceController.selected.seance_id, seanceController.selected.roomNumber)}">
+                                            <c:when test="${ticketBean.isSeatReserved(i.index, j.index, seanceController.selected)}">
                                                 <td>
                                                     <h:commandButton id="disabled" disabled="true" class="sala"/>
 
@@ -78,7 +78,7 @@ and open the template in the editor.
                                             </c:when>
                                             <c:otherwise>
                                                 <td>
-                                                    <h:commandButton action="${ticketBean.reserveSeat(i.index, j.index, seanceController.selected.seance_id, 1, seanceController.selected.roomNumber)}" class="sala1"   />
+                                                    <h:commandButton action="${ticketBean.reserveSeat(i.index, j.index, seanceController.selected)}" class="sala1"   />
 
                                                 </td>
                                             </c:otherwise>

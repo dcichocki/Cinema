@@ -15,39 +15,39 @@ import pl.edu.wat.cinema.util.HibernateUtil;
  * @author Damian
  */
 public class SeanceHelper {
-    
+
     Session session;
 
     public SeanceHelper() {
         this.session = HibernateUtil.getSessionFactory().getCurrentSession();
     }
 
-  public List getSeanceList(int startID, int endID) {
+    public List getSeanceList(int startID, int endID) {
         List<Seance> seanceList = null;
         System.out.println("startID" + startID);
         try {
             org.hibernate.Transaction tx = session.beginTransaction();
-            Query q = session.createQuery("from Seance as seance where seance.seance_id between '" + startID +"' and '" + endID + "'");
-           seanceList = (List<Seance>) q.list();
+            Query q = session.createQuery("from Seance as seance where seance.seance_id between '" + startID + "' and '" + endID + "'");
+            seanceList = (List<Seance>) q.list();
         } catch (Exception e) {
         }
         return seanceList;
 
     }
-  
-  public Seance getSeanceByID(int seance_id){
 
-    Seance seance = null;
+    public Seance getSeanceByID(int seance_id) {
 
-    try {
-        org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("from Seance as seance where seance.seance_id=" + seance_id);
-        seance = (Seance) q.uniqueResult();
-    } catch (Exception e) {
-        e.printStackTrace();
+        Seance seance = null;
+
+        try {
+            org.hibernate.Transaction tx = session.beginTransaction();
+            Query q = session.createQuery("from Seance as seance where seance.seance_id=" + seance_id);
+            seance = (Seance) q.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return seance;
     }
-
-    return seance;
-}
 
 }

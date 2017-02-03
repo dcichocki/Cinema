@@ -5,19 +5,41 @@
  */
 package pl.edu.wat.cinema.seance;
 
+import java.io.Serializable;
+import java.util.Set;
+import pl.edu.wat.cinema.film.Film;
+import pl.edu.wat.cinema.ticket.Ticket;
 
 /**
  *
  * @author Damian
  */
-public class Seance {
+public class Seance implements Serializable {
 
-    int seance_id;
-    String date;
-    String roomNumber;
-    String title;
-    String description;
-    String hour;
+    private int seance_id;
+    private String date;
+    private String roomNumber;
+    private String hour;
+    private Film film;
+    private Set<Ticket> ticket;
+
+    public Seance() {
+    }
+
+    public Seance(String roomNumber, String date, String hour, Film film) {
+        this.film = film;
+        this.date = date;
+        this.roomNumber = roomNumber;
+        this.hour = hour;
+    }
+
+    public Set<Ticket> getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(Set<Ticket> ticket) {
+        this.ticket = ticket;
+    }
 
     public String getHour() {
         return hour;
@@ -27,31 +49,12 @@ public class Seance {
         this.hour = hour;
     }
 
-    public Seance() {
+    public Film getFilm() {
+        return film;
     }
 
-    public Seance(String roomNumber, String date, String title, String description, String hour) {
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.roomNumber = roomNumber;
-        this.hour = hour;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title1) {
-        this.title = title1;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description1) {
-        this.description = description1;
+    public void setFilm(Film film) {
+        this.film = film;
     }
 
     public String getRoomNumber() {

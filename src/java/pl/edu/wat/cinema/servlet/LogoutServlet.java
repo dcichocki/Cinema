@@ -20,19 +20,15 @@ import org.hibernate.Session;
  *
  * @author Kamil
  */
-//@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+@WebServlet(name = "LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 
     HttpSession session;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-//        User user=session.
-//         session.removeAttribute("user",user);
-//        session.invalidate();                               
+            throws ServletException, IOException {                               
         session = request.getSession();
-        
         if (session != null) {
             session.removeAttribute("user");
             session.invalidate();

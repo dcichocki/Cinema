@@ -5,6 +5,9 @@
  */
 package pl.edu.wat.cinema.ticket;
 
+import pl.edu.wat.cinema.seance.Seance;
+import pl.edu.wat.cinema.user.User;
+
 /**
  *
  * @author Damian
@@ -12,21 +15,28 @@ package pl.edu.wat.cinema.ticket;
 public class Ticket {
 
     private int ticket_id;
-    private int seance_id;
-    private int film_id;
-    private int room_id;
     private int sites_x;
     private int sites_y;
+    private User user;
+    private Seance seance;
 
-    public Ticket(int seance_id, int film_id, int room_id, int sites_x, int sites_y) {
-        this.seance_id = seance_id;
-        this.film_id = film_id;
-        this.room_id = room_id;
+    public Ticket() {
+    }
+
+    public Ticket(int sites_x, int sites_y, User user, Seance seance) {
+        this.seance = seance;
         this.sites_x = sites_x;
         this.sites_y = sites_y;
+        this.user = user;
 
     }
-    public Ticket(){
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getSites_x() {
@@ -53,28 +63,12 @@ public class Ticket {
         this.ticket_id = ticket_id;
     }
 
-    public int getSeance_id() {
-        return seance_id;
+    public Seance getSeance() {
+        return seance;
     }
 
-    public void setSeance_id(int seance_id) {
-        this.seance_id = seance_id;
-    }
-
-    public int getFilm_id() {
-        return film_id;
-    }
-
-    public void setFilm_id(int film_id) {
-        this.film_id = film_id;
-    }
-
-    public int getRoom_id() {
-        return room_id;
-    }
-
-    public void setRoom_id(int room_id) {
-        this.room_id = room_id;
+    public void setSeance(Seance seance) {
+        this.seance = seance;
     }
 
 }

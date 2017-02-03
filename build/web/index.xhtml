@@ -29,19 +29,19 @@ and open the template in the editor.
                 <h3 class="text-muted" align="center">System obsługi kina</h3>
                 <nav class="navbar navbar-default">
                     <ul class="nav navbar-nav">
-                        <li class="active"> <a href="/Cinema-master/">Strona głowna</a></li>
+                        <li class="active"> <a href="#">Strona głowna</a></li>
                         <li><a href="register.xhtml">Rejestracja</a></li>
-                        <li ><a href="films.xhtml">Repertuar</a></li>
+                        <li><a href="films.xhtml">Repertuar</a></li>
 
                     </ul>
                     <ul class="nav navbar-nav navbar-right"> 
                         <li>
                             <h:panelGroup rendered="#{not empty user}">
+                                <li ><a href="user.xhtml">Moje konto</a></li>
                                 <li style="margin-top: 15px"> <span class="glyphicon glyphicon-user"></span> Witaj: #{user.login}</li>
-                                <li> <form class="form-signin" action="LogoutServlet" method="POST">                                   
-                                        <a href="login.xhtml"><span class="glyphicon glyphicon-log-out" ></span> Wyloguj się</a>
-
-                                    </form></li>
+                                <li> <form class="form-signin" action="LogoutServlet" method="POST">
+                                        <input class="glyphicon glyphicon-log-out" type="image" value="Wyloguj się" href="login.xhtml"></input>
+                                </form></li>
                             </h:panelGroup>
                         </li>
                         <li>
@@ -72,14 +72,14 @@ and open the template in the editor.
                                 <f:facet name="header">
                                     Tytuł
                                 </f:facet>
-                                #{item.title}
+                                #{item.film.title}
                             </h:column>
                             <h:column>
 
                                 <f:facet name="header">
                                     Opis
                                 </f:facet>
-                                #{item.description}
+                                #{item.film.description}
                             </h:column>
                             <h:column>
 
